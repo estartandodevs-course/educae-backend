@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ramonxavier/Development/Github/ED/TCC/Educae/Educae.csproj": {}
+    "C:\\workspace\\Tcc-Back\\educae-backend\\Educae.csproj": {}
   },
   "projects": {
-    "/Users/ramonxavier/Development/Github/ED/TCC/Educae/Educae.csproj": {
+    "C:\\workspace\\Tcc-Back\\educae-backend\\Educae.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ramonxavier/Development/Github/ED/TCC/Educae/Educae.csproj",
+        "projectUniqueName": "C:\\workspace\\Tcc-Back\\educae-backend\\Educae.csproj",
         "projectName": "Educae",
-        "projectPath": "/Users/ramonxavier/Development/Github/ED/TCC/Educae/Educae.csproj",
-        "packagesPath": "/Users/ramonxavier/.nuget/packages/",
-        "outputPath": "/Users/ramonxavier/Development/Github/ED/TCC/Educae/obj/",
+        "projectPath": "C:\\workspace\\Tcc-Back\\educae-backend\\Educae.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\workspace\\Tcc-Back\\educae-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/ramonxavier/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -66,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
