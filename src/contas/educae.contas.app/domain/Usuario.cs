@@ -3,7 +3,7 @@ using EstartandoDevsCore.DomainObjects;
 
 namespace educae.contas.app.domain;
 
-public class Usuario : Entity
+public class Usuario : Entity, IAggregateRoot
 {
 
 }
