@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BCC43E38-118E-47D3-9623-5A6AADBB96E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "contas", "contas", "{5F36459D-E68B-4305-A7C1-385D4423D419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "educae.contas.app", "src\contas\educae.contas.app\educae.contas.app.csproj", "{69ADA57B-6F97-4D8C-AEBC-67F9CA4E0DD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{549FF421-D5C0-42DF-9073-CCA9E36A1F75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "educae.api", "src\api\educae.api\educae.api.csproj", "{3FB0940C-3361-4821-B148-1959284BEF1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "comunicacao", "comunicacao", "{543D7097-DB39-4C86-8653-B679280AD91F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "educae.comunicacao.app", "src\comunicacao\educae.comunicacao.app\educae.comunicacao.app.csproj", "{35443556-D63B-4C1F-A8CA-B48BE0EA71E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69ADA57B-6F97-4D8C-AEBC-67F9CA4E0DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69ADA57B-6F97-4D8C-AEBC-67F9CA4E0DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69ADA57B-6F97-4D8C-AEBC-67F9CA4E0DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69ADA57B-6F97-4D8C-AEBC-67F9CA4E0DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB0940C-3361-4821-B148-1959284BEF1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB0940C-3361-4821-B148-1959284BEF1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB0940C-3361-4821-B148-1959284BEF1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB0940C-3361-4821-B148-1959284BEF1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35443556-D63B-4C1F-A8CA-B48BE0EA71E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35443556-D63B-4C1F-A8CA-B48BE0EA71E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35443556-D63B-4C1F-A8CA-B48BE0EA71E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35443556-D63B-4C1F-A8CA-B48BE0EA71E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F36459D-E68B-4305-A7C1-385D4423D419} = {BCC43E38-118E-47D3-9623-5A6AADBB96E8}
+		{69ADA57B-6F97-4D8C-AEBC-67F9CA4E0DD4} = {5F36459D-E68B-4305-A7C1-385D4423D419}
+		{549FF421-D5C0-42DF-9073-CCA9E36A1F75} = {BCC43E38-118E-47D3-9623-5A6AADBB96E8}
+		{3FB0940C-3361-4821-B148-1959284BEF1B} = {549FF421-D5C0-42DF-9073-CCA9E36A1F75}
+		{543D7097-DB39-4C86-8653-B679280AD91F} = {BCC43E38-118E-47D3-9623-5A6AADBB96E8}
+		{35443556-D63B-4C1F-A8CA-B48BE0EA71E5} = {543D7097-DB39-4C86-8653-B679280AD91F}
+	EndGlobalSection
+EndGlobal
