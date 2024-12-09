@@ -1,8 +1,8 @@
 namespace educae.contas.domain.enums
 {
-    public enum TipoContaEnum
+    public enum TipoUsuario
     {
         Aluno,
-        Professor
+        Educador
     }
 }
