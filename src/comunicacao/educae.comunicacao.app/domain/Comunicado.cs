@@ -7,3 +7,4 @@ public class Comunicado : Entity, IAggregateRoot
 {
 
 }
+frfhgmhht
