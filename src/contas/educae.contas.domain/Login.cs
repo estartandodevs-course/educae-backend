@@ -1,5 +1,5 @@
-using educae.core.DomainObjects;
-using educae.core.ValueObjects;
+using EstartandoDevsCore.DomainObjects;
+using EstartandoDevsCore.ValueObjects;
 
 namespace educae.contas.domain
 {
