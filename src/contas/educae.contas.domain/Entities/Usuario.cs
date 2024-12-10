@@ -1,4 +1,5 @@
 using educae.contas.domain.enums;
+using educae.contas.domain.ValueObject;
 using EstartandoDevsCore.DomainObjects;
 using EstartandoDevsCore.ValueObjects;
 

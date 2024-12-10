@@ -1,7 +1,7 @@
 using EstartandoDevsCore.DomainObjects;
 using EstartandoDevsCore.ValueObjects;
 
-namespace educae.contas.domain
+namespace educae.contas.domain.ValueObject
 {
     public sealed class Login
     {
