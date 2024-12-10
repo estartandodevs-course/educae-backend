@@ -1,10 +1,11 @@
+using educae.contas.domain;
 
-
+namespace educae.contas.app.ViewModels;
 public class  AlunoViewModel 
 {
+    public Guid AlunoId { get; set; }
     public string Nome { get; set; }
     public string Email { get; set; }
-    public string Senha { get; set; } 
     public int TipoUsuario { get; set; } 
     public string Matricula { get; set; }
 
@@ -12,10 +13,10 @@ public class  AlunoViewModel
     {
         return new AlunoViewModel()
         {
+            AlunoId = aluno.Id,
             Nome = aluno.Nome,
-            Email = aluno.Email,
-            Senha = aluno.Senha,
-            TipoUsuario = aluno.TipoUsuario,
+            Email = aluno.Email.Endereco,
+            TipoUsuario = (int)aluno.TipoUsuario,
             Matricula = aluno.Matricula
         };
     }

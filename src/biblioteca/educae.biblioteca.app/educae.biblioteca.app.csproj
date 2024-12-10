@@ -7,9 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="EstartandoDevsCore">
-        <HintPath>..\..\..\.nuget\packages\estartandodevs.core\1.0.0\lib\net8.0\EstartandoDevsCore.dll</HintPath>
-      </Reference>
+      <PackageReference Include="EstartandoDevs.Core" Version="1.0.0" />
     </ItemGroup>
 
 </Project>
