@@ -1,12 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using educae.comunicacao.domain.Entities;
 
-namespace educae.comunicacao.app.ViewModels
+namespace educae.comunicacao.app.ViewModels;
+
+public class LembreteViewModel
 {
-    public class Lembretes
+    public string Descricao { get; set; }
+    public bool Concluido { get; set; }
+    
+
+    public static LembreteViewModel Mapear (Lembrete lembrete)
     {
-        
+        return new LembreteViewModel()
+        {
+        Descricao = lembrete.descricao,
+        Concluido = lembrete.concluido
+        };
     }
 }

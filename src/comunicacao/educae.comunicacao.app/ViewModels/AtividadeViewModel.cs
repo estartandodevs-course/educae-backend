@@ -1,4 +1,8 @@
+using educae.comunicacao.domain.Entities;
+
 namespace educae.comunicacao.app.ViewModels;
+
+
 
 public class AtividadeViewModel
 {
@@ -19,4 +23,3 @@ public class AtividadeViewModel
                 };
             }
 }
-
