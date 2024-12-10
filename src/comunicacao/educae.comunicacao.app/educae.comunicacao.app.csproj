@@ -15,4 +15,12 @@
       <ProjectReference Include="..\educae.comunicacao.domain\educae.comunicacao.domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Application\Commands\Atividades\" />
+      <Folder Include="Application\Commands\Comunicados\" />
+      <Folder Include="Application\Commands\Lembretes\" />
+      <Folder Include="Application\Commands\SolicitacoesDeFeedBack\" />
+      <Folder Include="Application\Queries\" />
+    </ItemGroup>
+
 </Project>
