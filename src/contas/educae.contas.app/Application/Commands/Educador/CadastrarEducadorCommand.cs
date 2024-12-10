@@ -12,10 +12,9 @@ public class CadastrarEducadorCommand : Command
     public int TipoUsuario { get; set; }
     public string Cpf { get; set; }
     public string Telefone { get; set; }
-    public string Matricula { get; set; }
 
     public CadastrarEducadorCommand(string nome, Email email, Senha senha, 
-        int tipoUsuario, String cpf , string telefone, string matricula)
+        int tipoUsuario, String cpf , string telefone)
     {
         Nome = nome;
         Email = email;
@@ -23,7 +22,6 @@ public class CadastrarEducadorCommand : Command
         TipoUsuario = tipoUsuario;
         Cpf = cpf; 
         Telefone = telefone;
-        Matricula = matricula;
     }
 
     public override bool EstaValido()
