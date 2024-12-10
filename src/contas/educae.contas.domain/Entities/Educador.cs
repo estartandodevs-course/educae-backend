@@ -7,7 +7,6 @@ public class Educador : Usuario
 {
     public Cpf CPF { get; set; }
     
-    
     protected Educador() {}
 
     public Educador(string nome, Email email, Senha senha, TipoUsuario tipoUsuario, Cpf cpf) 
