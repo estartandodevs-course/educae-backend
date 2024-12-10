@@ -1,6 +1,6 @@
 using educae.contas.domain;
+using educae.contas.domain.interfaces;
 using educae.contas.infra.data;
-using educae.contas.infra.interfaces;
 using EstartandoDevsCore.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,39 +15,39 @@ namespace educae.contas.infra.repositories
             _context = context;
         }
 
-        public IUnitOfWorks UnitOfWork => _context;
-
-        IUnitOfWorks IEducadorRepository.UnitOfWork => throw new NotImplementedException();
-
-        public void Adicionar(Educador educador)
+        public Task<Educador> ObterPorId(Guid Id)
         {
-            _context.Usuarios.Add(educador);
+            throw new NotImplementedException();
         }
 
-        public void Atualizar(Educador educador)
+        public void Adicionar(Educador entity)
         {
-            _context.Usuarios.Update(educador);
+            throw new NotImplementedException();
+        }
+
+        public void Atualizar(Educador entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void Apagar(Func<Educador, bool> predicate)
         {
-            var educadores = _context.Usuarios.OfType<Educador>().Where(predicate).ToList();
-            _context.Usuarios.RemoveRange(educadores);
+            throw new NotImplementedException();
         }
 
-        public async Task<Educador> ObterPorCpf(string cpf)
+        public IUnitOfWorks UnitOfWork { get; }
+        public Task<Educador> ObterPorCpf(string cpf)
         {
-            return await _context.Usuarios.OfType<Educador>().FirstOrDefaultAsync(e => e.CPF.Numero == cpf);
+            throw new NotImplementedException();
         }
-
-        public async Task<IEnumerable<Educador>> ObterTodos()
-        {
-            return await _context.Usuarios.OfType<Educador>().ToListAsync();
-        }
-
         public void Dispose()
         {
-            _context?.Dispose();
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Educador>> ObterTodos()
+        {
+            throw new NotImplementedException();
         }
     }
 }

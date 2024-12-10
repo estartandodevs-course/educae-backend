@@ -1,6 +1,6 @@
 using educae.contas.domain;
+using educae.contas.domain.interfaces;
 using educae.contas.infra.data;
-using educae.contas.infra.interfaces;
 using EstartandoDevsCore.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,38 +14,41 @@ namespace educae.contas.infra.repositories
         {
             _context = context;
         }
-
-        public IUnitOfWorks UnitOfWork => _context;
-
-        public void Adicionar(Aluno aluno)
+        
+        public void Dispose()
         {
-            _context.Usuarios.Add(aluno);
+            throw new NotImplementedException();
         }
 
-        public void Atualizar(Aluno aluno)
+        public Task<Aluno> ObterPorId(Guid Id)
         {
-            _context.Usuarios.Update(aluno);
+            throw new NotImplementedException();
+        }
+
+        public void Adicionar(Aluno entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Atualizar(Aluno entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void Apagar(Func<Aluno, bool> predicate)
         {
-            var alunos = _context.Usuarios.OfType<Aluno>().Where(predicate).ToList();
-            _context.Usuarios.RemoveRange(alunos);
+            throw new NotImplementedException();
         }
 
-        public async Task<Aluno> ObterPorMatricula(string matricula)
+        public IUnitOfWorks UnitOfWork { get; }
+        public Task<Aluno> ObterPorMatricula(string matricula)
         {
-            return await _context.Usuarios.OfType<Aluno>().FirstOrDefaultAsync(a => a.Matricula == matricula);
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Aluno>> ObterTodos()
+        public Task<IEnumerable<Aluno>> ObterTodos()
         {
-            return await _context.Usuarios.OfType<Aluno>().ToListAsync();
-        }
-
-        public void Dispose()
-        {
-            _context?.Dispose();
+            throw new NotImplementedException();
         }
     }
 }
