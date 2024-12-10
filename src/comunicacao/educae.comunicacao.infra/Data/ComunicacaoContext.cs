@@ -2,6 +2,7 @@ using educae.comunicacao.domain.Entities;
 using educae.comunicacao.domain.ValueObject;
 using educae.contas.infra.data;
 using EstartandoDevsCore.Data;
+using EstartandoDevsCore.DomainObjects;
 using EstartandoDevsCore.Mediator;
 using EstartandoDevsCore.Messages;
 using EstartandoDevsCore.Ultilities;
@@ -60,5 +61,27 @@ public class ComunicacaoContext : DbContext, IUnitOfWorks
 
         if (sucesso) await _mediatorHandler.PublicarEventos(this);
 
-        return sucesso;    }
+        return sucesso;    
+    }
+    
+    public static class MediatorExtension
+    {
+        public static async Task PublicarEventos<T>(this IMediatorHandler mediator, T ctx) where T : DbContext
+        {
+            var domainEntities = ctx.ChangeTracker
+                .Entries<Entity>()
+                .Where(x => x.Entity.Notificacoes != null && x.Entity.Notificacoes.Any());
+
+            var domainEvents = domainEntities
+                .SelectMany(x => x.Entity.Notificacoes)
+                .ToList();
+
+            domainEntities.ToList()
+                .ForEach(entity => entity.Entity.LimparEventos());
+
+            var tasks = domainEvents.Select(async (domainEvent) => {await mediator.PublicarEvento(domainEvent);});
+
+            await Task.WhenAll(tasks);
+        }
+    }
 }
