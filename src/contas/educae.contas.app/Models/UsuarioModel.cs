@@ -12,6 +12,7 @@ public class UsuarioModel
     public string Senha { get; set; }
     [Required(ErrorMessage = "A propriedade {0} é obrigatória")]
     public int TipoUsuario { get; set; }
+    public string Telefone { get; set; }
 }
 
 public class EducadorModel : UsuarioModel
