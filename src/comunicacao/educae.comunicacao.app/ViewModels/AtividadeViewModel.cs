@@ -9,7 +9,7 @@ public class AtvidadeViewModel
         public bool Feito { get; set; }
             public static AtividadeViewModel Mapear (Atividade atividade)
             { 
-            return new AtividadeViewModel()
+                return new AtividadeViewModel()
                 {
                     Titulo = atividade.titulo,
                     Descricao = atividade.descricao,
