@@ -12,8 +12,8 @@ public class LembreteViewModel
     {
         return new LembreteViewModel()
         {
-        Descricao = lembrete.descricao,
-        Concluido = lembrete.concluido
+        Descricao = lembrete.Descricao,
+        Concluido = lembrete.Concluido
         };
     }
 }

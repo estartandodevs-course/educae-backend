@@ -8,14 +8,14 @@ public class ComunicadoViewModel
     public string Descricao { get; set; }
     public string Imagem { get; set; }
     public DateTime DataExpiracao { get; set; }
-        public static ComunicadoViewModel Mapear (Comunicado comunicado)
+    public static ComunicadoViewModel Mapear (Comunicado comunicado)
+    {
+        return new ComunicadoViewModel ()
         {
-            return new ComunicadoViewModel ()
-            {
-            Titulo = comunicado.titulo,
-            Descricao = comunicado.descricaol,
-            Imagem = comunicado.imagem,
-            DataExpiracao =comunicado.dataExpiracao
-            };
-        }
+            Titulo = comunicado.Titulo,
+            Descricao = comunicado.Descricao,
+            Imagem = comunicado.Imagem,
+            DataExpiracao = comunicado.DataExpiracao
+        };
+    }
 }
