@@ -4,9 +4,14 @@ namespace educae.comunicacao.domain.ValueObject;
 
 public class RespostaFeedBack
 {
-    public string Resposta { get; private set; }
-    public DateTime DataResposta { get; private set; }
-    // public Usuario Remetente { get; private set; }
+    public string? Resposta { get; private set; }
+    public DateTime? DataResposta { get; private set; }
     
-    public virtual SolicitacaoFeedback SolicitacaoFeedback { get; private set; }
+    protected RespostaFeedBack() {}
+
+    public RespostaFeedBack(string? resposta, DateTime? dataResposta)
+    {
+        Resposta = resposta;
+        DataResposta = dataResposta;
+    }
 }
