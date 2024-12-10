@@ -4,6 +4,7 @@ namespace educae.comunicacao.app.ViewModels;
 
 public class LembreteViewModel
 {
+    public Guid LembreteId { get; set; }
     public string Descricao { get; set; }
     public bool Concluido { get; set; }
     
@@ -12,8 +13,9 @@ public class LembreteViewModel
     {
         return new LembreteViewModel()
         {
-        Descricao = lembrete.Descricao,
-        Concluido = lembrete.Concluido
+            LembreteId = lembrete.Id,
+            Descricao = lembrete.Descricao,
+            Concluido = lembrete.Concluido
         };
     }
 }
