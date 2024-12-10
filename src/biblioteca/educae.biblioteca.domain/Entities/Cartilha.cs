@@ -1,3 +1,4 @@
+
 using EstartandoDevsCore.DomainObjects;
 
 namespace educae.biblioteca.domain.Entities;
