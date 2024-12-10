@@ -9,11 +9,10 @@ public class Educador : Usuario
     
     protected Educador() {}
 
-    public Educador(string nome, Email email, Senha senha, TipoUsuario tipoUsuario, Cpf cpf) 
+    public Educador(string nome, Login login, TipoUsuario tipoUsuario, Cpf cpf) 
     {
         AtribuirNome(nome);
-        AtribuirEmail(email);
-        AtribuirSenha(senha);
+        AtribuirLogin(login);
         AtribuirTipoUsuario(tipoUsuario);
         CPF = cpf;
     }

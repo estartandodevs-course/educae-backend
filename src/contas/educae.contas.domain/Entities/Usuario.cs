@@ -7,23 +7,20 @@ namespace educae.contas.domain
     public class Usuario : Entity, IAggregateRoot
     {
         public string Nome { get; private set; }
-        public Email Email { get; private set; }
-        public Senha Senha { get; private set; }
+        public Login Login { get; private set; }
         public TipoUsuario TipoUsuario { get; private set; }
 
         protected Usuario() { }
-        
-        public Usuario(string nome, Email email, Senha senha, TipoUsuario tipoUsuario)
+
+        public Usuario(string nome, Login login, TipoUsuario tipoUsuario)
         {
             Nome = nome;
-            Email = email;
-            Senha = senha;
+            Login = login;
             TipoUsuario = tipoUsuario;
         }
-        
+
         public void AtribuirNome(string nome) => Nome = nome;
-        public void AtribuirEmail(Email email) => Email = email;
-        public void AtribuirSenha(Senha senha) => Senha = senha;
+        public void AtribuirLogin(Login login) => Login = login;
         public void AtribuirTipoUsuario(TipoUsuario tipo) => TipoUsuario = tipo;
     }
 }

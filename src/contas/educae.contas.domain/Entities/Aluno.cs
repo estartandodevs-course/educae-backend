@@ -9,11 +9,10 @@ public class Aluno : Usuario
     
     protected Aluno() {}
 
-    public Aluno(string nome, Email email, Senha senha, TipoUsuario tipoUsuario, string matricula)
+    public Aluno(string nome, Login login, TipoUsuario tipoUsuario, string matricula)
     {
         AtribuirNome(nome);
-        AtribuirEmail(email);
-        AtribuirSenha(senha);
+        AtribuirLogin(login);
         AtribuirTipoUsuario(tipoUsuario);
         Matricula = matricula;
     }
