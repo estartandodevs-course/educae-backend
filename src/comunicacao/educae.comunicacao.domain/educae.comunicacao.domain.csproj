@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="EstartandoDevsCore">
+        <HintPath>..\..\..\.nuget\packages\estartandodevs.core\1.0.0\lib\net8.0\EstartandoDevsCore.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
