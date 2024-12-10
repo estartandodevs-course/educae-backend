@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\contas\educae.contas.app\educae.contas.app.csproj" />
       <ProjectReference Include="..\educae.comunicacao.domain\educae.comunicacao.domain.csproj" />
     </ItemGroup>
 
