@@ -10,4 +10,8 @@
     <PackageReference Include="EstartandoDevs.Core" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\educae.contas.domain\educae.contas.domain.csproj" />
+  </ItemGroup>
+
 </Project>
