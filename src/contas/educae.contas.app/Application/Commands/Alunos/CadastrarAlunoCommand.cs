@@ -35,16 +35,16 @@ public class CadastrarAlunoCommand : Command
         public CadastrarAlunoValidation()
         {
             RuleFor(x => x.Nome)
-                .NotEmpty().WithMessage("A prorpiedade Nome é obrigatória!")
-                .NotNull().WithMessage("A prorpiedade Nome é obrigatória!");
+                .NotEmpty().WithMessage("A propriedade Nome é obrigatória!")
+                .NotNull().WithMessage("A propriedade Nome é obrigatória!");
             
             RuleFor(x => x.Email)
-                .NotEmpty().WithMessage("A prorpiedade Email é obrigatória!")
-                .NotNull().WithMessage("A prorpiedade Email é obrigatória!");
+                .NotEmpty().WithMessage("A propriedade Email é obrigatória!")
+                .NotNull().WithMessage("A propriedade Email é obrigatória!");
             
             RuleFor(x => x.Senha)
-                .NotEmpty().WithMessage("A prorpiedade Senha é obrigatória!")
-                .NotNull().WithMessage("A prorpiedade Senha é obrigatória!");
+                .NotEmpty().WithMessage("A propriedade Senha é obrigatória!")
+                .NotNull().WithMessage("A propriedade Senha é obrigatória!");
             
             RuleFor(x => x.TipoUsuario)
                 .NotEmpty().WithMessage("Por favor informe o tipo do novo usuário!")
