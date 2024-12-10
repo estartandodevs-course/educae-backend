@@ -14,6 +14,8 @@ namespace educae.contas.infra.data
         private readonly IMediatorHandler _mediatorHandler;
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Aluno> Alunos { get; set; }
+        public DbSet<Educador> Educadores { get; set; }
 
         public UsuarioContext(DbContextOptions<UsuarioContext> options, IMediatorHandler mediatorHandler)
         : base(options)
