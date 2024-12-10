@@ -10,4 +10,15 @@
       <PackageReference Include="EstartandoDevs.Core" Version="1.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\contas\educae.contas.infra\educae.contas.infra.csproj" />
+      <ProjectReference Include="..\educae.comunicacao.domain\educae.comunicacao.domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.EntityFrameworkCore">
+        <HintPath>..\..\..\..\..\.nuget\packages\microsoft.entityframeworkcore\9.0.0\lib\net8.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
