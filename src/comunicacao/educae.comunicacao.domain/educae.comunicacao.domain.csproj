@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="EstartandoDevsCore">
+        <HintPath>..\..\..\.nuget\packages\estartandodevs.core\1.0.0\lib\net8.0\EstartandoDevsCore.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="EstartandoDevs.Core" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>
