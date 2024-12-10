@@ -15,7 +15,7 @@ public class  AlunoViewModel
         {
             AlunoId = aluno.Id,
             Nome = aluno.Nome,
-            Email = aluno.Email.Endereco,
+            Email = aluno.Login.Email.Endereco,
             TipoUsuario = (int)aluno.TipoUsuario,
             Matricula = aluno.Matricula
         };

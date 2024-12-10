@@ -15,7 +15,7 @@ public class  EducadorViewModel
         {
             EducadorId = educador.Id,
             Nome = educador.Nome,
-            Email = educador.Email.Endereco,
+            Email = educador.Login.Email.Endereco,
             TipoUsuario = (int)educador.TipoUsuario,
             Cpf = educador.CPF.Numero
         };
