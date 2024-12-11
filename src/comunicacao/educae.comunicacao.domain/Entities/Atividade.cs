@@ -12,15 +12,20 @@ public class Atividade : Entity, IAggregateRoot
     
     protected Atividade() {}
 
-    public Atividade(string titulo, string descricao, DateTime dataMaximaEntrega, int avaliacaoDaExecucao, bool feito)
+    public Atividade(string titulo, string descricao, DateTime dataMaximaEntrega, bool feito)
     {
         Titulo = titulo;
         Descricao = descricao;
         DataMaximaEntrega = dataMaximaEntrega;
-        AvaliacaoDaExecucao = avaliacaoDaExecucao;
         Feito = feito;
     }
 
+    public void Atualizar(string titulo, string descricao, DateTime dataMaximaEntrega)
+    {
+        Titulo = titulo;
+        Descricao = descricao;
+        DataMaximaEntrega = dataMaximaEntrega;
+    }
     public void AtribuirTitulo(string titulo) => Titulo = titulo;
     public void AtribuirDescricao(string descricao) => Descricao = descricao;
     public void AtribuirDataMaximaEntrega(DateTime dataMaximaEntrega) => DataMaximaEntrega = dataMaximaEntrega;
