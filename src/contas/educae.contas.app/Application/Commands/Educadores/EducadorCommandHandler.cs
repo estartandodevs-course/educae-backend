@@ -3,6 +3,7 @@ using educae.contas.domain.enums;
 using educae.contas.domain.interfaces;
 using educae.contas.domain.ValueObject;
 using EstartandoDevsCore.Messages;
+using EstartandoDevsCore.ValueObjects;
 using FluentValidation.Results;
 using MediatR;
 
@@ -10,7 +11,8 @@ using MediatR;
 namespace educae.contas.app.Application.Commands.Educadores
 {
     public class EducadorCommandHandler : CommandHandler,
-        IRequestHandler<CadastrarEducadorCommand, ValidationResult>, IDisposable
+        IRequestHandler<CadastrarEducadorCommand, ValidationResult>, 
+        IRequestHandler<AtualizarEducadorCommand, ValidationResult>, IDisposable
     {
         private readonly IEducadorRepository _educadorRepository;
 
@@ -35,7 +37,7 @@ namespace educae.contas.app.Application.Commands.Educadores
                 nome: request.Nome,
                 login: new Login(request.Email, request.Senha),
                 tipoUsuario: TipoUsuario.Educador,
-                cpf: request.Cpf
+                cpf: new Cpf(request.Cpf)
             );
 
             _educadorRepository.Adicionar(educador);
@@ -64,9 +66,9 @@ namespace educae.contas.app.Application.Commands.Educadores
             return await PersistirDados(_educadorRepository.UnitOfWork);
         }
 
-        public void Disposable()
+        public void Dispose()
         {
-            _educadorRepository.Dispose();
+            _educadorRepository?.Dispose();
         }
     }
 }
