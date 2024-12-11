@@ -34,7 +34,9 @@ public class CartilhaRepository : ICartilhaRepository
 
     public void Apagar(Func<Cartilha, bool> predicate)
     {
-        var cartilha = _context.Cartilhas.FirstOrDefault(predicate);
+        var cartilha = _context.Cartilhas
+            .Include(x => x.Anexos)
+            .FirstOrDefault(predicate);
         
         _context.Cartilhas.Remove(cartilha);
     }
@@ -42,6 +44,7 @@ public class CartilhaRepository : ICartilhaRepository
     public async Task<IEnumerable<Cartilha>> ObterCartilhas()
     {
         return await _context.Cartilhas
+            .Include(x => x.Anexos)
             .OrderByDescending(x => x.DataDeCadastro)
             .ToListAsync();
     }
