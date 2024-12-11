@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <Folder Include="Application\Commands\Educadores\" />
-    <Folder Include="Application\Queries\Interfaces\" />
   </ItemGroup>
 
 </Project>
