@@ -8,7 +8,8 @@ namespace educae.comunicacao.app.Application.Commands.Atividades;
 
 public class AtividadeCommandHandler : CommandHandler,
     IRequestHandler<AdicionarAtividadeCommand, ValidationResult>, 
-    IRequestHandler<EditarAtividadeCommand, ValidationResult>, IDisposable
+    IRequestHandler<EditarAtividadeCommand, ValidationResult>, 
+    IRequestHandler<EnviarAtividadeCommand, ValidationResult>, IDisposable
 {
     private readonly IAtividadeRepository _atividadeRepository;
 
@@ -46,9 +47,29 @@ public class AtividadeCommandHandler : CommandHandler,
         
         return await PersistirDados(_atividadeRepository.UnitOfWork);
     }
+    public async Task<ValidationResult> Handle(EnviarAtividadeCommand request, CancellationToken cancellationToken)
+    {
+        if(!request.EstaValido()) return ValidationResult;
+        
+        var atividade = await _atividadeRepository.ObterPorId(request.AtividadeId);
+
+        if (atividade == null)
+        {
+            AdicionarErro("Atividade não encontrada");
+            return ValidationResult;
+        }
+        
+        atividade.MarcarFeito();
+        atividade.AtribuirEstrelas(request.AvaliacaoAtividade);
+        
+        _atividadeRepository.Atualizar(atividade);
+        
+        return await PersistirDados(_atividadeRepository.UnitOfWork);
+    }
 
     public void Dispose()
     {
         _atividadeRepository?.Dispose();
     }
+
 }
