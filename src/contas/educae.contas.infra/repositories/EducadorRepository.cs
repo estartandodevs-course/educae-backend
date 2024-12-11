@@ -19,32 +19,32 @@ namespace educae.contas.infra.repositories
 
         public void Adicionar(Educador educador)
         {
-            _context.Usuarios.Add(educador);
+            _context.Educadores.Add(educador);
         }
 
         public void Atualizar(Educador educador)
         {
-            _context.Usuarios.Update(educador);
+            _context.Educadores.Update(educador);
         }
 
         public void Apagar(Func<Educador, bool> predicate)
         {
-            var educadores = _context.Usuarios.OfType<Educador>().Where(predicate).ToList();
-            _context.Usuarios.RemoveRange(educadores);
+            var educadores = _context.Educadores.Where(predicate).ToList();
+            _context.Educadores.RemoveRange(educadores);
         }
 
         public async Task<Educador> ObterPorId(Guid Id)
         {
-            return await _context.Usuarios.OfType<Educador>().FirstOrDefaultAsync(x => x.Id == Id);
+            return await _context.Educadores.FirstOrDefaultAsync(x => x.Id == Id);
         }
         public async Task<Educador> ObterPorCpf(string cpf)
         {
-            return await _context.Usuarios.OfType<Educador>().FirstOrDefaultAsync(x => x.CPF.Numero == cpf);
+            return await _context.Educadores.FirstOrDefaultAsync(x => x.CPF.Numero == cpf);
         }
 
         public async Task<IEnumerable<Educador>> ObterTodos()
         {
-            return await _context.Usuarios.OfType<Educador>().OrderBy(x => x.Nome).ToListAsync();
+            return await _context.Educadores.OrderBy(x => x.Nome).ToListAsync();
         }
 
         public void Dispose()
