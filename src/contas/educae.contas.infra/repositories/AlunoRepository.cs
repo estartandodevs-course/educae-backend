@@ -14,41 +14,43 @@ namespace educae.contas.infra.repositories
         {
             _context = context;
         }
-        
-        public void Dispose()
+
+        public IUnitOfWorks UnitOfWork => _context;
+
+
+        public void Adicionar(Aluno aluno)
         {
-            throw new NotImplementedException();
+            _context.Usuarios.Add(aluno);
         }
 
-        public Task<Aluno> ObterPorId(Guid Id)
+        public void Atualizar(Aluno aluno)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Adicionar(Aluno entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Atualizar(Aluno entity)
-        {
-            throw new NotImplementedException();
+            _context.Usuarios.Update(aluno);
         }
 
         public void Apagar(Func<Aluno, bool> predicate)
         {
-            throw new NotImplementedException();
+            var alunos = _context.Usuarios.OfType<Aluno>().Where(predicate).ToList();
+            _context.Usuarios.RemoveRange(alunos);
+        }
+        public async Task<Aluno> ObterPorId(Guid Id)
+        {
+            //Utilização do OfType<Aluno>() devido o erro de conversão de tipo
+            return await _context.Usuarios.OfType<Aluno>().FirstOrDefaultAsync(x => x.Id == Id);
+        }
+        public async Task<Aluno> ObterPorMatricula(string matricula)
+        {
+            return await _context.Usuarios.OfType<Aluno>().FirstOrDefaultAsync(x => x.Matricula == matricula);
         }
 
-        public IUnitOfWorks UnitOfWork { get; }
-        public Task<Aluno> ObterPorMatricula(string matricula)
+        public async Task<IEnumerable<Aluno>> ObterTodos()
         {
-            throw new NotImplementedException();
+            return await _context.Usuarios.OfType<Aluno>().OrderBy(x => x.Nome).ToListAsync();
         }
 
-        public Task<IEnumerable<Aluno>> ObterTodos()
+        public void Dispose()
         {
-            throw new NotImplementedException();
+            _context?.Dispose();
         }
     }
 }
