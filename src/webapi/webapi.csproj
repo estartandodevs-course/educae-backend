@@ -26,9 +26,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="EstartandoDevs.Core" Version="1.0.0" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\educae.identidade.app\educae.identidade.app.csproj" />
     <ProjectReference Include="..\biblioteca\educae.biblioteca.app\educae.biblioteca.app.csproj" />
     <ProjectReference Include="..\biblioteca\educae.biblioteca.infra\educae.biblioteca.infra.csproj" />
     
@@ -46,6 +48,10 @@
     <Content Include="..\..\..\.dockerignore">
       <Link>.dockerignore</Link>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
