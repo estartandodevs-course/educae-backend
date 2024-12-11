@@ -10,4 +10,9 @@
       <PackageReference Include="EstartandoDevs.Core" Version="1.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Application\Commands\" />
+      <Folder Include="Application\Queries\" />
+    </ItemGroup>
+
 </Project>
