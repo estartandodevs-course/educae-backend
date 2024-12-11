@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace educae.biblioteca.infra.Data;
 
-public class ComunicacaoContext : DbContext, IUnitOfWorks
+public class BibliotecaContext : DbContext, IUnitOfWorks
 {
     private readonly IMediatorHandler _mediatorHandler;
 
@@ -19,7 +19,7 @@ public class ComunicacaoContext : DbContext, IUnitOfWorks
     public DbSet<Anexo> Anexos { get; set; }
 
 
-    public ComunicacaoContext(DbContextOptions<ComunicacaoContext> options, IMediatorHandler mediatorHandler)
+    public BibliotecaContext(DbContextOptions<BibliotecaContext> options, IMediatorHandler mediatorHandler)
         : base(options)
     {
         _mediatorHandler = mediatorHandler;
@@ -30,7 +30,7 @@ public class ComunicacaoContext : DbContext, IUnitOfWorks
         modelBuilder.Ignore<ValidationResult>();
         modelBuilder.Ignore<Event>();
 
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ComunicacaoContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(BibliotecaContext).Assembly);
     }
 
     public async Task<bool> Commit()
