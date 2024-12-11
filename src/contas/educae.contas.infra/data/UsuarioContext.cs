@@ -18,7 +18,7 @@ namespace educae.contas.infra.data
         public DbSet<Educador> Educadores { get; set; }
 
         public UsuarioContext(DbContextOptions<UsuarioContext> options, IMediatorHandler mediatorHandler)
-        : base(options)
+            : base(options)
         {
             _mediatorHandler = mediatorHandler;
         }
@@ -30,12 +30,13 @@ namespace educae.contas.infra.data
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UsuarioContext).Assembly);
         }
+
         public async Task<bool> Commit()
         {
             var cetZone = ZonaDeTempo.ObterZonaDeTempo();
 
             foreach (var entry in ChangeTracker.Entries()
-                        .Where(entry => entry.Entity.GetType().GetProperty("DataDeCadastro") != null))
+                         .Where(entry => entry.Entity.GetType().GetProperty("DataDeCadastro") != null))
             {
                 if (entry.State == EntityState.Added)
                 {

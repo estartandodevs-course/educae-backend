@@ -14,20 +14,20 @@ namespace educae.comunicacao.infra.Data;
 public class ComunicacaoContext : DbContext, IUnitOfWorks
 {
     private readonly IMediatorHandler _mediatorHandler;
-    
+
     public DbSet<Atividade> Atividades { get; set; }
     public DbSet<Comunicado> Comunicados { get; set; }
     public DbSet<Lembrete> Lembretes { get; set; }
     public DbSet<SolicitacaoFeedback> Solicitacoes { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<RespostaFeedBack> Respostas { get; set; }
-    
+
     public ComunicacaoContext(DbContextOptions<ComunicacaoContext> options, IMediatorHandler mediatorHandler)
         : base(options)
     {
         _mediatorHandler = mediatorHandler;
     }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Ignore<ValidationResult>();
@@ -35,7 +35,7 @@ public class ComunicacaoContext : DbContext, IUnitOfWorks
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ComunicacaoContext).Assembly);
     }
-    
+
     public async Task<bool> Commit()
     {
         var cetZone = ZonaDeTempo.ObterZonaDeTempo();
@@ -61,10 +61,11 @@ public class ComunicacaoContext : DbContext, IUnitOfWorks
 
         if (sucesso) await _mediatorHandler.PublicarEventos(this);
 
-        return sucesso;    
+        return sucesso;
     }
-    
-    public static class MediatorExtension
+}
+
+public static class MediatorExtension
     {
         public static async Task PublicarEventos<T>(this IMediatorHandler mediator, T ctx) where T : DbContext
         {
@@ -79,9 +80,8 @@ public class ComunicacaoContext : DbContext, IUnitOfWorks
             domainEntities.ToList()
                 .ForEach(entity => entity.Entity.LimparEventos());
 
-            var tasks = domainEvents.Select(async (domainEvent) => {await mediator.PublicarEvento(domainEvent);});
+            var tasks = domainEvents.Select(async (domainEvent) => { await mediator.PublicarEvento(domainEvent); });
 
             await Task.WhenAll(tasks);
         }
     }
-}
