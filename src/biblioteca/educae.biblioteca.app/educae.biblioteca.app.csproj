@@ -11,10 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\Queries\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\educae.biblioteca.domain\educae.biblioteca.domain.csproj" />
     </ItemGroup>
 
