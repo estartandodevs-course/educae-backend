@@ -17,7 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\Commands\Comunicados\" />
       <Folder Include="Application\Commands\Lembretes\" />
       <Folder Include="Application\Commands\SolicitacoesDeFeedBack\" />
       <Folder Include="Application\Queries\Interfaces\" />
