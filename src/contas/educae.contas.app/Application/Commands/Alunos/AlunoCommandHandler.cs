@@ -63,6 +63,6 @@ public class AlunoCommandHandler : CommandHandler,
 
     public void Dispose()
     {
-        _alunoRepository.Dispose();
+        _alunoRepository?.Dispose();
     }
 }

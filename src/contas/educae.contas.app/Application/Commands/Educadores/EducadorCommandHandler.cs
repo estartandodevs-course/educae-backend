@@ -24,7 +24,7 @@ namespace educae.contas.app.Application.Commands.Educadores
         public async Task<ValidationResult> Handle(CadastrarEducadorCommand request, CancellationToken cancellationToken)
         {
             if (!request.EstaValido()) return request.ValidationResult;
-
+            
 
             var educadorExistente = await _educadorRepository.ObterPorCpf(request.Cpf);
             if (educadorExistente != null)
