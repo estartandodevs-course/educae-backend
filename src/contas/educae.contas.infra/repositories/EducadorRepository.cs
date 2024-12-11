@@ -15,39 +15,41 @@ namespace educae.contas.infra.repositories
             _context = context;
         }
 
-        public Task<Educador> ObterPorId(Guid Id)
+        public IUnitOfWorks UnitOfWork => _context;
+
+        public void Adicionar(Educador educador)
         {
-            throw new NotImplementedException();
+            _context.Usuarios.Add(educador);
         }
 
-        public void Adicionar(Educador entity)
+        public void Atualizar(Educador educador)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Atualizar(Educador entity)
-        {
-            throw new NotImplementedException();
+            _context.Usuarios.Update(educador);
         }
 
         public void Apagar(Func<Educador, bool> predicate)
         {
-            throw new NotImplementedException();
+            var educadores = _context.Usuarios.OfType<Educador>().Where(predicate).ToList();
+            _context.Usuarios.RemoveRange(educadores);
         }
 
-        public IUnitOfWorks UnitOfWork { get; }
-        public Task<Educador> ObterPorCpf(string cpf)
+        public async Task<Educador> ObterPorId(Guid Id)
         {
-            throw new NotImplementedException();
+            return await _context.Usuarios.OfType<Educador>().FirstOrDefaultAsync(x => x.Id == Id);
         }
+        public async Task<Educador> ObterPorCpf(string cpf)
+        {
+            return await _context.Usuarios.OfType<Educador>().FirstOrDefaultAsync(x => x.CPF.Numero == cpf);
+        }
+
+        public async Task<IEnumerable<Educador>> ObterTodos()
+        {
+            return await _context.Usuarios.OfType<Educador>().OrderBy(x => x.Nome).ToListAsync();
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Educador>> ObterTodos()
-        {
-            throw new NotImplementedException();
+            _context?.Dispose();
         }
     }
 }
