@@ -12,7 +12,10 @@
 
     <ItemGroup>
       <Folder Include="Application\Queries\" />
-      <Folder Include="ViewModels\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\educae.biblioteca.domain\educae.biblioteca.domain.csproj" />
     </ItemGroup>
 
 </Project>
