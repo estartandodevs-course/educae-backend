@@ -28,6 +28,14 @@ public class Cartilha : Entity, IAggregateRoot
         Autor = autor;
     }
 
+    public void Atualizar(string titulo, string resumo, string descricao, Url url, string autor)
+    {
+        Titulo = titulo;
+        Resumo = resumo;
+        Descricao = descricao;
+        Url = url;
+        Autor = autor;
+    }
     public void AtribuirTitulo(string titulo) => Titulo = titulo;
     public void AtribuirResumo(string resumo) => Resumo = resumo;
     public void AtribuirDescricao(string descricao) => Descricao = descricao;
@@ -40,6 +48,11 @@ public class Cartilha : Entity, IAggregateRoot
         _anexos.Add(anexo);
     }
 
+    public void LimparAnexos()
+    {
+        QuantidadeDeAnexos = 0;
+        _anexos.Clear();
+    }
     public void RemoverAnexo(Anexo anexo)
     {
         QuantidadeDeAnexos--;
