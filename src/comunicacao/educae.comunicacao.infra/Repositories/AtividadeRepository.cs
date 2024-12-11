@@ -15,7 +15,7 @@ public class AtividadeRepository : IAtividadeRepository
         _context = context;
     }
 
-    public IUnitOfWorks UnitOfWork { get; }
+    public IUnitOfWorks UnitOfWork => _context;
 
     public async Task<Atividade> ObterPorId(Guid Id)
     {
