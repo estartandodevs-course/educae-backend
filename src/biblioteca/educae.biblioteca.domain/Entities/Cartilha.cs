@@ -9,6 +9,7 @@ public class Cartilha : Entity, IAggregateRoot
     public string Resumo { get; private set; }
     public string Descricao { get; private set; }
     public Url Url {get; private set;}
+    public Usuario Autor { get; private set; }
     public int QuantidadeDeAnexos { get; private set; }
     private List<Anexo> _anexos;
     public IReadOnlyCollection<Anexo> Anexos => _anexos;
@@ -18,18 +19,20 @@ public class Cartilha : Entity, IAggregateRoot
         _anexos = new List<Anexo>();
     }
 
-    public Cartilha(string titulo, string resumo, string descricao, Url url)
+    public Cartilha(string titulo, string resumo, string descricao, Url url, Usuario autor)
     {
         Titulo = titulo;
         Resumo = resumo;
         Descricao = descricao;
         Url = url;
+        Autor = autor;
     }
-    
+
     public void AtribuirTitulo(string titulo) => Titulo = titulo;
     public void AtribuirResumo(string resumo) => Resumo = resumo;
     public void AtribuirDescricao(string descricao) => Descricao = descricao;
     public void AtribuirLink(Url link) => Url = link;
+    public void AtribuirAutor(Usuario usuario) => Autor = usuario;
 
     public void AdicionarAnexo(Anexo anexo)
     {
