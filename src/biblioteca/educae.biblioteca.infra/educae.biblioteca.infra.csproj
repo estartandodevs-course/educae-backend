@@ -8,6 +8,12 @@
 
     <ItemGroup>
       <PackageReference Include="EstartandoDevs.Core" Version="1.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     </ItemGroup>
 
     <ItemGroup>
