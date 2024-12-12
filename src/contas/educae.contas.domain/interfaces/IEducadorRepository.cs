@@ -1,4 +1,4 @@
-using educae.contas.domain;
+"using educae.contas.domain;
 using EstartandoDevsCore.Data;
 
 namespace educae.contas.domain.interfaces
