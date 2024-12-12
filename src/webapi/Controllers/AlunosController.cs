@@ -57,7 +57,13 @@ public class AlunosController : MainController
     public async Task<IActionResult> ObterPorMatricula(string matricula)
     {
         var aluno = await _alunoQuery.ObterAlunoPorMatricula(matricula);
-        if (aluno == null) return NotFound();
+        
+        if (aluno == null)
+        {
+            AdicionarErro("Aluno não encontrado");
+            return CustomResponse();
+        }
+        
         return CustomResponse(aluno);
     }
 
@@ -66,7 +72,11 @@ public class AlunosController : MainController
     {
         var aluno = await _alunoQuery.ObterAlunoPorId(id);
         
-        if (aluno == null) return NotFound();
+        if (aluno == null)
+        {
+            AdicionarErro("Aluno não encontrado");
+            return CustomResponse();
+        }
         
         return CustomResponse(aluno);
     }

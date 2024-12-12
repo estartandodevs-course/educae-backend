@@ -57,7 +57,13 @@ public class EducadoresController : MainController
     public async Task<IActionResult> ObterPorCpf(string cpf)
     {
         var educador = await _educadorQuery.ObterEducadorPorCpf(cpf);
-        if (educador == null) return NotFound();
+        
+        if (educador == null)
+        {
+            AdicionarErro("Aluno não encontrado");
+            return CustomResponse();
+        }
+        
         return CustomResponse(educador);
     }
 
@@ -66,7 +72,11 @@ public class EducadoresController : MainController
     {
         var educador = await _educadorQuery.ObterEducadorPorId(id);
         
-        if (educador == null) return NotFound();
+        if (educador == null)
+        {
+            AdicionarErro("Aluno não encontrado");
+            return CustomResponse();
+        }
         
         return CustomResponse(educador);
     }
