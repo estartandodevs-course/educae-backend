@@ -21,6 +21,11 @@ public class EducadoresController : MainController
         _educadorQuery = educadorQuery;
     }
 
+    /// <summary>
+    /// Recurso para cadastrar um educador
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> Cadastrar([FromBody] EducadorModel model)
     {
@@ -37,6 +42,11 @@ public class EducadoresController : MainController
         return CustomResponse(await _mediatorHandler.EnviarComando(command));
     }
 
+    /// <summary>
+    /// Recurso para editar o perfil de um educador
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
     [HttpPut]
     public async Task<IActionResult> Atualizar([FromBody] EducadorModel model)
     {
@@ -53,6 +63,11 @@ public class EducadoresController : MainController
         return CustomResponse(await _mediatorHandler.EnviarComando(command));
     }
 
+    /// <summary>
+    /// Recurso para obter educador pelo número do cpf
+    /// </summary>
+    /// <param name="cpf"></param>
+    /// <returns></returns>
     [HttpGet("{cpf}")]
     public async Task<IActionResult> ObterPorCpf(string cpf)
     {
@@ -67,6 +82,11 @@ public class EducadoresController : MainController
         return CustomResponse(educador);
     }
 
+    /// <summary>
+    /// Recurso para obter educador pelo id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> ObterPorId(Guid id)
     {
@@ -81,6 +101,10 @@ public class EducadoresController : MainController
         return CustomResponse(educador);
     }
 
+    /// <summary>
+    /// Recurso para obter todos os educadores
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> ObterTodos()
     {

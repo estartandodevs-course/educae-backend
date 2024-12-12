@@ -21,6 +21,11 @@ public class AlunosController : MainController
         _alunoQuery = alunoQuery;
     }
 
+    /// <summary>
+    /// Recurso para cadastrar um aluno
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> Cadastrar([FromBody] AlunoModel model)
     {
@@ -37,6 +42,11 @@ public class AlunosController : MainController
         return CustomResponse(await _mediatorHandler.EnviarComando(command));
     }
 
+    /// <summary>
+    /// Recurso para editar o perfil de um aluno
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
     [HttpPut]
     public async Task<IActionResult> Atualizar([FromBody] AlunoModel model)
     {
@@ -53,6 +63,11 @@ public class AlunosController : MainController
         return CustomResponse(await _mediatorHandler.EnviarComando(command));
     }
 
+    /// <summary>
+    /// Recurso para obter aluno pelo número da matricula
+    /// </summary>
+    /// <param name="matricula"></param>
+    /// <returns></returns>
     [HttpGet("{matricula}")]
     public async Task<IActionResult> ObterPorMatricula(string matricula)
     {
@@ -67,6 +82,11 @@ public class AlunosController : MainController
         return CustomResponse(aluno);
     }
 
+    /// <summary>
+    /// Recurso para obter aluno pelo id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> ObterPorId(Guid id)
     {
@@ -81,6 +101,10 @@ public class AlunosController : MainController
         return CustomResponse(aluno);
     }
 
+    /// <summary>
+    /// Recurso para obter todos os alunos
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> ObterTodos()
     {
