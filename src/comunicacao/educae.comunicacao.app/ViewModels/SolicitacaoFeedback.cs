@@ -8,7 +8,7 @@ public class SolicitacaoFeedbackViewModel
 {
     public string Assunto { get; set; }
     public string Conteudo { get; set; }
-    public Guid EducadorDestinatarioId { get; set; }
+    public Guid? EducadorDestinatarioId { get; set; }
     public string EducadorNome { get; set; }
     public string EducadorEmail { get; set; }
     public Guid? AlunoRemetenteId { get; set; }
