@@ -24,6 +24,8 @@ public class EducadoresController : MainController
     [HttpPost]
     public async Task<IActionResult> Cadastrar([FromBody] EducadorModel model)
     {
+        if(!ModelState.IsValid) return CustomResponse(ModelState);
+        
         var command = new CadastrarEducadorCommand(
             model.Nome, 
             new Email(model.Email), 
@@ -38,6 +40,8 @@ public class EducadoresController : MainController
     [HttpPut]
     public async Task<IActionResult> Atualizar([FromBody] EducadorModel model)
     {
+        if(!ModelState.IsValid) return CustomResponse(ModelState);
+
         var command = new AtualizarEducadorCommand(
             model.Nome, 
             new Email(model.Email), 
@@ -54,6 +58,16 @@ public class EducadoresController : MainController
     {
         var educador = await _educadorQuery.ObterEducadorPorCpf(cpf);
         if (educador == null) return NotFound();
+        return CustomResponse(educador);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> ObterPorId(Guid id)
+    {
+        var educador = await _educadorQuery.ObterEducadorPorId(id);
+        
+        if (educador == null) return NotFound();
+        
         return CustomResponse(educador);
     }
 

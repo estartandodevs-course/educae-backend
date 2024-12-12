@@ -24,6 +24,8 @@ public class AlunosController : MainController
     [HttpPost]
     public async Task<IActionResult> Cadastrar([FromBody] AlunoModel model)
     {
+        if(!ModelState.IsValid) return CustomResponse(ModelState);
+
         var command = new CadastrarAlunoCommand(
             model.Nome, 
             new Email(model.Email), 
@@ -38,6 +40,8 @@ public class AlunosController : MainController
     [HttpPut]
     public async Task<IActionResult> Atualizar([FromBody] AlunoModel model)
     {
+        if(!ModelState.IsValid) return CustomResponse(ModelState);
+        
         var command = new AtualizarAlunoCommand(
             model.Nome, 
             new Email(model.Email), 
@@ -54,6 +58,16 @@ public class AlunosController : MainController
     {
         var aluno = await _alunoQuery.ObterAlunoPorMatricula(matricula);
         if (aluno == null) return NotFound();
+        return CustomResponse(aluno);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> ObterPorId(Guid id)
+    {
+        var aluno = await _alunoQuery.ObterAlunoPorId(id);
+        
+        if (aluno == null) return NotFound();
+        
         return CustomResponse(aluno);
     }
 
