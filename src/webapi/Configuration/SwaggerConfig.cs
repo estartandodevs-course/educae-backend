@@ -11,9 +11,9 @@ public static class SwaggerConfig
         {
             c.SwaggerDoc("v1", new OpenApiInfo()
             {
-                Title = "Projeto Forum Estartando Devs 2024",
-                Description = "Este projeto é um modelo para estudo dos alunos de Back-End",
-                Contact = new OpenApiContact() { Name = "Alexandre Nascimento", Email = "alexandre@techdog.com.br" }
+                Title = "Educaê - Um projeto Estartando Devs 2024",
+                Description = "Este projeto tem como fim servir de trabalho de conclusão de curso da turma de backend da edição de 2024 do Estartando devs",
+                Contact = new OpenApiContact() { Name = "Lucas Lima", Email = "lucasbezerra14.ll@gmail.com" }
             });
 
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
