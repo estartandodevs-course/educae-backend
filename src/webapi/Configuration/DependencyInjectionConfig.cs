@@ -36,7 +36,7 @@ public static class DependencyInjectionConfig
 
         services.AddScoped<IAtividadeRepository, AtividadeRepository>();
         services.AddScoped<IComunicadoRepository, ComunicadoRepository>();
-        services.AddScoped<ISolicitacaoFeedBackRepository, SolicitacaoFeedBackRepository>();
+        services.AddScoped<ISolicitacaoFeedBackRepository, SolicitacaoFeedbackRepository>();
         services.AddScoped<ILembreteRepository, LembreteRepository>();
 
         services.AddScoped<ICartilhaRepository, CartilhaRepository>();
