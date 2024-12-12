@@ -19,9 +19,9 @@ public class SolicitacaoFeedbackViewModel
     public string Resposta { get; set; }
     public string DataResposta { get; set; }
 
-    public SolicitacaoFeedbackViewModel Mapear (SolicitacaoFeedback solicitacaoFeedback)
+    public static SolicitacaoFeedbackViewModel Mapear(SolicitacaoFeedback solicitacaoFeedback)
     {
-        return new SolicitacaoFeedbackViewModel () 
+        return new SolicitacaoFeedbackViewModel()
         {
             Assunto = solicitacaoFeedback.Assunto,
             Conteudo = solicitacaoFeedback.Conteudo,
@@ -34,7 +34,7 @@ public class SolicitacaoFeedbackViewModel
             EnvioAnonimo = solicitacaoFeedback.EnvioAnonimo,
             Aberta = solicitacaoFeedback.Aberta,
             Resposta = solicitacaoFeedback.Resposta.Resposta,
-            DataResposta = solicitacaoFeedback.Resposta.DataResposta.ToString()        
+            DataResposta = solicitacaoFeedback.Resposta.DataResposta.ToString()
         };
     }
 }
