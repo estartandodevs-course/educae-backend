@@ -1,0 +1,13 @@
+services:
+  api-educae:
+    image: api-educae:1.0.0
+    container_name: api-educae
+    build:
+      context: ../src
+      dockerfile: ./webapi/Dockerfile
+    restart: always
+    ports:
+      - "5227:5227"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5227;http://+5227 

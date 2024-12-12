@@ -1,6 +1,5 @@
 using educae.comunicacao.domain.Entities;
 using educae.comunicacao.domain.ValueObject;
-using educae.contas.infra.data;
 using EstartandoDevsCore.Data;
 using EstartandoDevsCore.DomainObjects;
 using EstartandoDevsCore.Mediator;
