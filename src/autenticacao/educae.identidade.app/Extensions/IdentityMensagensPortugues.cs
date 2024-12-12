@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace educae.identidade.App.Extensions;
+namespace educae.identidade.app.Extensions;
 
 public class IdentityMensagensPortugues : IdentityErrorDescriber
 {

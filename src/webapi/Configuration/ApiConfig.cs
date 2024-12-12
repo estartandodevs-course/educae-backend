@@ -1,6 +1,7 @@
 using educae.biblioteca.infra.Data;
 using educae.comunicacao.infra.Data;
 using educae.contas.infra.data;
+using educae.identidade.app.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webapi.Configuration;
@@ -9,7 +10,8 @@ namespace webapi.Configuration;
 
 public static class ApiConfig
 {
-    private const string ConexaoBancoDeDados = "educaeConnection";
+    private const string ConexaoBancoDeDados = "EducaeConnection";
+    private const string ConexaoBancoDeDadosIdentidade = "IdentityConnection";
     private const string PermissoesDeOrigem = "_permissoesDeOrigem";
 
     public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
@@ -24,6 +26,9 @@ public static class ApiConfig
         
         services.AddDbContext<BibliotecaContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString(ConexaoBancoDeDados)));
+        
+        services.AddDbContext<AutenticacaoDbContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString(ConexaoBancoDeDadosIdentidade)));
 
         services.Configure<ApiBehaviorOptions>(options =>
         {
@@ -32,12 +37,6 @@ public static class ApiConfig
 
         services.AddCors(options =>
         {
-            // options.AddPolicy(PermissoesDeOrigem,
-            // policy =>{
-            //     policy.WithOrigins("http://www.conectedu.com",
-            //                        "http://conectedu.com");
-            // });
-
             options.AddPolicy(PermissoesDeOrigem,
                 builder =>
                 {
@@ -51,13 +50,9 @@ public static class ApiConfig
     public static void UseApiConfiguration(this WebApplication app)
     {
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwaggerConfiguration();
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
-        }
+        app.UseSwaggerConfiguration();
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         app.MapControllers();
         // app.UseAuthConfiguration();

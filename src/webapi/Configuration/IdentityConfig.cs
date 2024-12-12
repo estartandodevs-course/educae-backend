@@ -1,5 +1,6 @@
-using educae.identidade.App.Data;
-using educae.identidade.App.Extensions;
+
+using educae.identidade.app.Data;
+using educae.identidade.app.Extensions;
 using EstartandoDevsWebApiCore.Identidade;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

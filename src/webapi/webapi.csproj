@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>src</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -30,7 +31,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\educae.identidade.app\educae.identidade.app.csproj" />
+    <ProjectReference Include="..\autenticacao\educae.identidade.app\educae.identidade.app.csproj" />
     <ProjectReference Include="..\biblioteca\educae.biblioteca.app\educae.biblioteca.app.csproj" />
     <ProjectReference Include="..\biblioteca\educae.biblioteca.infra\educae.biblioteca.infra.csproj" />
     
@@ -46,6 +47,9 @@
       <DependentUpon>appsettings.json</DependentUpon>
     </Content>
     <Content Include="..\..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
+    <Content Include="..\..\.dockerignore">
       <Link>.dockerignore</Link>
     </Content>
   </ItemGroup>
