@@ -1,4 +1,5 @@
 using educae.biblioteca.app.Application.Commands;
+using educae.biblioteca.app.Application.Queries;
 using educae.biblioteca.app.Application.Queries.Interfaces;
 using educae.biblioteca.domain.Interfaces;
 using educae.biblioteca.infra.Repositories;
@@ -7,6 +8,7 @@ using educae.comunicacao.app.Application.Commands.Atividades;
 using educae.comunicacao.app.Application.Commands.Comunicados;
 using educae.comunicacao.app.Application.Commands.Lembretes;
 using educae.comunicacao.app.Application.Commands.SolicitacoesFeedbacks;
+using educae.comunicacao.app.Application.Queries;
 using educae.comunicacao.app.Application.Queries.Interfaces;
 using educae.contas.domain.interfaces;
 using educae.contas.infra.repositories;
@@ -14,6 +16,7 @@ using educae.comunicacao.domain.Interfaces;
 using educae.comunicacao.infra.Repositories;
 using educae.contas.app.Application.Commands.Alunos;
 using educae.contas.app.Application.Commands.Educadores;
+using educae.contas.app.Application.Queries;
 using educae.contas.app.Application.Queries.Interfaces;
 using EstartandoDevsCore.Mediator;
 using FluentValidation.Results;
@@ -33,20 +36,20 @@ public static class DependencyInjectionConfig
 
         services.AddScoped<IAtividadeRepository, AtividadeRepository>();
         services.AddScoped<IComunicadoRepository, ComunicadoRepository>();
-        // services.AddScoped<ISolicitacaoFeedBackRepository, SolicitacaoFeedBackRepository>();
-        // services.AddScoped<ILembreteRepository, LembreteRepository>();
+        services.AddScoped<ISolicitacaoFeedBackRepository, SolicitacaoFeedBackRepository>();
+        services.AddScoped<ILembreteRepository, LembreteRepository>();
 
         services.AddScoped<ICartilhaRepository, CartilhaRepository>();
         
-        services.AddScoped<IAlunoQuery, IAlunoQuery>();
-        services.AddScoped<IEducadorQuery, IEducadorQuery>();
+        services.AddScoped<IAlunoQuery, AlunoQuery>();
+        services.AddScoped<IEducadorQuery, EducadorQuery>();
 
-        services.AddScoped<IAtividadeQuery, IAtividadeQuery>();
-        services.AddScoped<IComunicadoQuery, IComunicadoQuery>();
-        services.AddScoped<ILembreteQuery, ILembreteQuery>();
-        services.AddScoped<ISolicitacaoFeedbackQuery, ISolicitacaoFeedbackQuery>();
+        services.AddScoped<IAtividadeQuery, AtividadeQuery>();
+        services.AddScoped<IComunicadoQuery, ComunicadoQuery>();
+        services.AddScoped<ILembreteQuery, LembreteQuery>();
+        services.AddScoped<ISolicitacaoFeedbackQuery, SolicitacaoFeedbackQuery>();
 
-        services.AddScoped<ICartilhaQuery, ICartilhaQuery>();
+        services.AddScoped<ICartilhaQuery, CartilhaQuery>();
 
         services.AddScoped<IRequestHandler<CadastrarAlunoCommand, ValidationResult>, AlunoCommandHandler>();
         services.AddScoped<IRequestHandler<AtualizarAlunoCommand, ValidationResult>, AlunoCommandHandler>();
