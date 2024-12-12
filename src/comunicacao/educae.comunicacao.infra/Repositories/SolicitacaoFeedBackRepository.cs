@@ -1,6 +1,6 @@
 namespace educae.comunicacao.infra.Repositories;
 
-public class SolicitacaoRepository
+public class SolicitacaoFeedBackRepository
 {
     
 }
