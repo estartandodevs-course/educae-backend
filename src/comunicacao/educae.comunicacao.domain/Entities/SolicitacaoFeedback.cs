@@ -12,9 +12,8 @@ public class SolicitacaoFeedback : Entity, IAggregateRoot
     public bool EnvioAnonimo { get; private set; }
     public bool Aberta { get; private set; }
     public RespostaFeedBack? Resposta { get; private set; }
-    
-    
-    protected SolicitacaoFeedback() {}
+
+    protected SolicitacaoFeedback() { }
 
     public SolicitacaoFeedback(string assunto, string conteudo, Usuario educadorDestinatario, Usuario? alunoRementente, bool envioAnonimo, bool aberta)
     {
@@ -25,7 +24,7 @@ public class SolicitacaoFeedback : Entity, IAggregateRoot
         EnvioAnonimo = envioAnonimo;
         Aberta = aberta;
     }
-    
+
     public void AtribuirAssunto(string assunto) => Assunto = assunto;
     public void AtribuirConteudo(string conteudo) => Conteudo = conteudo;
     public void AtribuirDestinatario(Usuario educador) => EducadorDestinatario = educador;
