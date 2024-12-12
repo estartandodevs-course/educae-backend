@@ -9,7 +9,9 @@ using MediatR;
 namespace educae.contas.app.Application.Commands.Alunos;
 
 public class AlunoCommandHandler : CommandHandler,
-    IRequestHandler<CadastrarAlunoCommand, ValidationResult>, IDisposable
+    IRequestHandler<CadastrarAlunoCommand, ValidationResult>, 
+    IRequestHandler<AtualizarAlunoCommand, ValidationResult>,
+    IDisposable
 {
     private readonly IAlunoRepository _alunoRepository;
 
