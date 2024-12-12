@@ -1,44 +1,65 @@
 using educae.comunicacao.domain.Entities;
 using educae.comunicacao.domain.Interfaces;
+using educae.comunicacao.infra.Data;
 using EstartandoDevsCore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace educae.comunicacao.infra.Repositories;
 
-public class SolicitacaoFeedBackRepository : ISolicitacaoFeedBackRepository
+public class SolicitacaoFeedbackRepository : ISolicitacaoFeedBackRepository
 {
-    public void Dispose()
+    private readonly ComunicacaoContext _context;
+
+    public SolicitacaoFeedbackRepository(ComunicacaoContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
 
-    public Task<SolicitacaoFeedback> ObterPorId(Guid Id)
+    public IUnitOfWorks UnitOfWork => _context;
+
+    public async Task<SolicitacaoFeedback> ObterPorId(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Solicitacoes
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public void Adicionar(SolicitacaoFeedback entity)
     {
-        throw new NotImplementedException();
+        _context.Solicitacoes.Add(entity);
     }
 
     public void Atualizar(SolicitacaoFeedback entity)
     {
-        throw new NotImplementedException();
+        _context.Solicitacoes.Update(entity);
     }
 
     public void Apagar(Func<SolicitacaoFeedback, bool> predicate)
     {
-        throw new NotImplementedException();
+        var solicitacao = _context.Solicitacoes.FirstOrDefault(predicate);
+        if (solicitacao != null)
+        {
+            _context.Solicitacoes.Remove(solicitacao);
+        }
     }
 
-    public IUnitOfWorks UnitOfWork { get; }
-    public Task<IEnumerable<SolicitacaoFeedback>> ObterSolicitacoesEmAberto()
+    public async Task<IEnumerable<SolicitacaoFeedback>> ObterSolicitacoesEmAberto()
     {
-        throw new NotImplementedException();
+        return await _context.Solicitacoes
+            .Where(x => x.Aberta)
+            .OrderBy(x => x.DataDeCadastro)
+            .ToListAsync();
     }
 
-    public Task<IEnumerable<SolicitacaoFeedback>> ObterSolicitacoesFechadas()
+    public async Task<IEnumerable<SolicitacaoFeedback>> ObterSolicitacoesFechadas()
     {
-        throw new NotImplementedException();
+        return await _context.Solicitacoes
+            .Where(x => !x.Aberta)
+            .OrderByDescending(x => x.DataDeCadastro)
+            .ToListAsync();
+    }
+
+    public void Dispose()
+    {
+        _context?.Dispose();
     }
 }
