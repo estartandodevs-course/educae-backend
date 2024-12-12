@@ -6,14 +6,13 @@ using educae.contas.domain.interfaces;
 using EstartandoDevsCore.Messages;
 using FluentValidation.Results;
 using MediatR;
+using Usuario = educae.comunicacao.domain.ValueObject.Usuario;
 
 namespace educae.comunicacao.app.Application.Commands.SolicitacoesFeedbacks
 {
     public class SolicitacaoFeedbackCommandHandler : CommandHandler,
-        IRequestHandler<AnonimoSolicitacaoFeedbackCommand, ValidationResult>,
         IRequestHandler<AtualizarSolicitacaoFeedbackCommand, ValidationResult>,
         IRequestHandler<CriarSolicitacaoFeedbackCommand, ValidationResult>,
-        IRequestHandler<FecharSolicitacaoFeedbackCommand, ValidationResult>,
         IRequestHandler<ResponderSolicitacaoFeedbackCommand, ValidationResult>,
         IDisposable
     {
@@ -25,28 +24,29 @@ namespace educae.comunicacao.app.Application.Commands.SolicitacoesFeedbacks
             _solicitacaoRepository = solicitacaoRepository;
             _usuarioRepository = usuarioRepository;
         }
-
-        public async Task<ValidationResult> Handle(AnonimoSolicitacaoFeedbackCommand request, CancellationToken cancellationToken)
+        public async Task<ValidationResult> Handle(CriarSolicitacaoFeedbackCommand request, CancellationToken cancellationToken)
         {
             if (!request.EstaValido()) return request.ValidationResult;
 
-            var solicitacao = await _solicitacaoRepository.ObterPorId(request.SolicitacaoId);
-            if (solicitacao == null)
+            var educador = await _usuarioRepository.ObterPorId(request.UsuarioDestinatarioId);
+            if (educador == null)
             {
-                AdicionarErro("Solicitação não encontrada.");
+                AdicionarErro("Educador destinatário não encontrado.");
                 return ValidationResult;
             }
-
-            if (request.EnvioAnonimo)
-                solicitacao.EnviarAnonimamente();
-            else
-                solicitacao.EnviarComIdentificacao();
-
-            _solicitacaoRepository.Atualizar(solicitacao);
+            
+            var solicitacao = new SolicitacaoFeedback(request.Assunto, request.Conteudo, 
+                new Usuario(request.UsuarioDestinatarioId, request.NomeUsuarioDestinatario, 
+                    request.EmailUsuarioDestinatario, request.FotoUsuarioDestinatario), 
+                new Usuario(request?.AlunoRemetenteId, request?.NomeAlunoRemetente, 
+                    request?.EmailAlunoRemetente, request?.FotoAlunoRemetente), request.EnvioAnonimo);
+            
+            _solicitacaoRepository.Adicionar(solicitacao);
 
             return await PersistirDados(_solicitacaoRepository.UnitOfWork);
-        }
 
+        }
+        
         public async Task<ValidationResult> Handle(AtualizarSolicitacaoFeedbackCommand request, CancellationToken cancellationToken)
         {
             if (!request.EstaValido()) return request.ValidationResult;
@@ -66,59 +66,6 @@ namespace educae.comunicacao.app.Application.Commands.SolicitacoesFeedbacks
             return await PersistirDados(_solicitacaoRepository.UnitOfWork);
         }
 
-        public async Task<ValidationResult> Handle(CriarSolicitacaoFeedbackCommand request, CancellationToken cancellationToken)
-        {
-            if (!request.EstaValido()) return request.ValidationResult;
-
-            var educador = await _usuarioRepository.ObterPorId(request.EducadorDestinatarioId);
-            if (educador == null)
-            {
-                AdicionarErro("Educador destinatário não encontrado.");
-                return ValidationResult;
-            }
-
-            Usuario? aluno = null;
-            if (request.AlunoRemetenteId.HasValue)
-            {
-                aluno = await _usuarioRepository.ObterPorId(request.AlunoRemetenteId.Value);
-                if (aluno == null)
-                {
-                    AdicionarErro("Aluno remetente não encontrado.");
-                    return ValidationResult;
-                }
-            }
-
-            var solicitacao = new SolicitacaoFeedback(
-                assunto: request.Assunto,
-                conteudo: request.Conteudo,
-                educadorDestinatario: educador,
-                alunoRementente: aluno,
-                envioAnonimo: request.EnvioAnonimo,
-                aberta: true
-            );
-
-            _solicitacaoRepository.Adicionar(solicitacao);
-
-            return await PersistirDados(_solicitacaoRepository.UnitOfWork);
-
-        }
-
-        public async Task<ValidationResult> Handle(FecharSolicitacaoFeedbackCommand request, CancellationToken cancellationToken)
-        {
-            if (!request.EstaValido()) return request.ValidationResult;
-
-            var solicitacao = await _solicitacaoRepository.ObterPorId(request.SolicitacaoId);
-            if (solicitacao == null)
-            {
-                AdicionarErro("Solicitação não encontrada.");
-                return ValidationResult;
-            }
-
-            solicitacao.AdicionarResposta(null);
-            _solicitacaoRepository.Atualizar(solicitacao);
-
-            return await PersistirDados(_solicitacaoRepository.UnitOfWork);
-        }
 
         public async Task<ValidationResult> Handle(ResponderSolicitacaoFeedbackCommand request, CancellationToken cancellationToken)
         {
@@ -144,8 +91,7 @@ namespace educae.comunicacao.app.Application.Commands.SolicitacoesFeedbacks
         }
         public void Dispose()
         {
-            _solicitacaoRepository.Dispose();
-            _usuarioRepository.Dispose();
+            _solicitacaoRepository?.Dispose(); 
         }
     }
 }

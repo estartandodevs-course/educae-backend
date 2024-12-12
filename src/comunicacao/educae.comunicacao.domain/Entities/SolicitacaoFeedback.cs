@@ -15,14 +15,13 @@ public class SolicitacaoFeedback : Entity, IAggregateRoot
 
     protected SolicitacaoFeedback() { }
 
-    public SolicitacaoFeedback(string assunto, string conteudo, Usuario educadorDestinatario, Usuario? alunoRementente, bool envioAnonimo, bool aberta)
+    public SolicitacaoFeedback(string assunto, string conteudo, Usuario educadorDestinatario, Usuario? alunoRementente, bool envioAnonimo)
     {
         Assunto = assunto;
         Conteudo = conteudo;
         EducadorDestinatario = educadorDestinatario;
         AlunoRementente = alunoRementente;
         EnvioAnonimo = envioAnonimo;
-        Aberta = aberta;
     }
 
     public void AtribuirAssunto(string assunto) => Assunto = assunto;
