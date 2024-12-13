@@ -1,5 +1,6 @@
 using educae.comunicacao.app.Application.Commands.SolicitacoesFeedbacks;
 using educae.comunicacao.app.Application.Queries.Interfaces;
+using educae.comunicacao.app.Models;
 using EstartandoDevsCore.Mediator;
 using EstartandoDevsWebApiCore.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -24,46 +25,62 @@ public class SolicitacoesFeedbackController : MainController
     {
         var solicitacoes = await _solicitacaoFeedbackQuery.ObterSolicitacoesEmAberto();
 
-        if (!solicitacoes.Any()) return NotFound("Nenhuma solicitação de feedback encontrada.");
+        if (!solicitacoes.Any())
+        {
+            AdicionarErro("Nenhuma solicitação de feedback encontrada.");
+            return CustomResponse();
+        }
 
-        return Ok(solicitacoes);
+        return CustomResponse(solicitacoes);
     }
 
     [HttpGet("fechadas")]
     public async Task<IActionResult> ObterSolicitacoesFechadas()
     {
         var solicitacoes = await _solicitacaoFeedbackQuery.ObterSolicitacoesFechadas();
+        
+        if (!solicitacoes.Any())
+        {
+            AdicionarErro("Nenhuma solicitação de feedback encontrada.");
+            return CustomResponse();
+        }
+        
         return CustomResponse(solicitacoes);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CriarSolicitacao([FromBody] CriarSolicitacaoFeedbackCommand command)
+    public async Task<IActionResult> CriarSolicitacao([FromBody] SolicitacaoFeedBackModel model)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-        var resultado = await _mediatorHandler.EnviarComando(command);
+        var comando = new CriarSolicitacaoFeedbackCommand(model.Assunto, model.Conteudo, model.EducadorDestinatario.Id,
+            model.EducadorDestinatario.Nome, model.EducadorDestinatario.Email, model.EducadorDestinatario.Foto, 
+            model.AlunoRementente.Id, model.AlunoRementente.Nome, model.AlunoRementente.Email, model.AlunoRementente.Foto,
+            model.EnvioAnonimo);
+        
+        var resultado = await _mediatorHandler.EnviarComando(comando);
         return CustomResponse(resultado);
     }
 
-    [HttpPost("{id:guid}/responder")]
-    public async Task<IActionResult> ResponderSolicitacao(Guid id, [FromBody] ResponderSolicitacaoFeedbackCommand command)
+    [HttpPost("responder")]
+    public async Task<IActionResult> ResponderSolicitacao(Guid solicitacaoId, string resposta)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
-
-        if (id != command.SolicitacaoId) return BadRequest("O ID informado não corresponde ao ID da solicitação.");
-
-        var resultado = await _mediatorHandler.EnviarComando(command);
+        
+        var comando = new ResponderSolicitacaoFeedbackCommand(solicitacaoId, resposta);
+        
+        var resultado = await _mediatorHandler.EnviarComando(comando);
         return CustomResponse(resultado);
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> AtualizarSolicitacao(Guid id, [FromBody] AtualizarSolicitacaoFeedbackCommand command)
+    public async Task<IActionResult> AtualizarSolicitacao([FromBody] AtualizarSolicitacaoFeedBackModel model)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-        if (id != command.SolicitacaoId) return BadRequest("O ID informado não corresponde ao ID da solicitação.");
-
-        var resultado = await _mediatorHandler.EnviarComando(command);
+        var comando = new AtualizarSolicitacaoFeedbackCommand(model.SolicitacaoId, model.Assunto, model.Conteudo);
+        
+        var resultado = await _mediatorHandler.EnviarComando(comando);
         return CustomResponse(resultado);
     }
 }
