@@ -1,13 +1,15 @@
 using educae.comunicacao.app.Application.Commands.Comunicados;
 using Microsoft.AspNetCore.Mvc;
 using educae.comunicacao.app.Application.Queries.Interfaces;
+using educae.comunicacao.app.Models;
 using EstartandoDevsCore.Mediator;
+using EstartandoDevsWebApiCore.Controllers;
 
 namespace src.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ComunicadosController : ControllerBase
+    public class ComunicadosController : MainController
     {
         private readonly IMediatorHandler _mediatorHandler;
         private readonly IComunicadoQuery _comunicadoQuery; 
@@ -20,32 +22,28 @@ namespace src.Controllers
 
        
         [HttpPost("adicionar")]
-        public async Task<IActionResult> AdicionarComunicado([FromBody] AdicionarComunicadoCommand command)
+        public async Task<IActionResult> AdicionarComunicado([FromBody] ComunicadoModel comunicado)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-            var resultado = await _mediatorHandler.EnviarComando(command);
+            var comando = new AdicionarComunicadoCommand(comunicado.Titulo, comunicado.Descricao, comunicado.Imagem, comunicado.DataExpiracao);
+            
+            var result = await _mediatorHandler.EnviarComando(comando);
 
-            if (resultado.IsValid)
-                return Ok(new { message = "Comunicado adicionado com sucesso!" });
-
-            return BadRequest(resultado.Errors);
+            return CustomResponse(result);
         }
 
         
         [HttpPut("editar")]
-        public async Task<IActionResult> EditarComunicado([FromBody] EditarComunicadoCommand command)
+        public async Task<IActionResult> EditarComunicado([FromBody] ComunicadoModel comunicado)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-            var resultado = await _mediatorHandler.EnviarComando(command);
+            var comando = new AdicionarComunicadoCommand(comunicado.Titulo, comunicado.Descricao, comunicado.Imagem, comunicado.DataExpiracao);
 
-            if (resultado.IsValid)
-                return Ok(new { message = "Comunicado editado com sucesso!" });
+            var result = await _mediatorHandler.EnviarComando(comando);
 
-            return BadRequest(resultado.Errors);
+            return CustomResponse(result);
         }
 
         
@@ -55,9 +53,11 @@ namespace src.Controllers
             var comunicados = await _comunicadoQuery.ObterComunicados();
 
             if (!comunicados.Any())
-                return NotFound(new { message = "Nenhum comunicado encontrado." });
-
-            return Ok(comunicados);
+            {
+                AdicionarErro("Nenhum comunicado encontrado."); 
+                return CustomResponse();
+            }
+            return CustomResponse(comunicados);
         }
 
         
@@ -67,9 +67,12 @@ namespace src.Controllers
             var comunicados = await _comunicadoQuery.ObterComunicadosAtivos();
 
             if (!comunicados.Any())
-                return NotFound(new { message = "Nenhum comunicado ativo encontrado." });
+            {
+                AdicionarErro("Nenhum comunicado ativo encontrado.");
+                return CustomResponse();
+            };
 
-            return Ok(comunicados);
+            return CustomResponse(comunicados);
         }
 
         
@@ -79,9 +82,11 @@ namespace src.Controllers
             var comunicados = await _comunicadoQuery.ObterComunicadosExpirados();
 
             if (!comunicados.Any())
-                return NotFound(new { message = "Nenhum comunicado expirado encontrado." });
-
-            return Ok(comunicados);
+            {
+                AdicionarErro("Nenhum comunicado expirado encontrado.");
+                return CustomResponse();
+            }
+            return CustomResponse(comunicados);
         }
     }
 }
