@@ -18,13 +18,23 @@ public class SolicitacaoFeedBackModel
 
 public class UsuarioModel
 {
+    public Guid Id { get; set; }
     [Required(ErrorMessage = "A propriedade {0} é obrigatória")]
     public string Nome { get; set; }
     [Required(ErrorMessage = "A propriedade {0} é obrigatória")]
     public string Email { get; set; }
+    public string Foto { get; set; }
 }
 
 public class RespostaFeedBackModel
 {
     public string? Resposta { get; set; }
-    public DateTime? DataResposta { get; set; }}
+    public DateTime? DataResposta { get; set; }
+}
+
+public class AtualizarSolicitacaoFeedBackModel
+{
+    public Guid SolicitacaoId { get; set; }
+    public string Assunto { get; set; }
+    public string Conteudo { get; set; }
+}
