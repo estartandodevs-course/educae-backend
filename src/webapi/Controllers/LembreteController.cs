@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using MediatR;
 using educae.comunicacao.app.Application.Commands.Lembretes;
 using educae.comunicacao.app.Application.Queries.Interfaces;
-using educae.comunicacao.app.ViewModels;
 using FluentValidation.Results;
+using EstartandoDevsCore.Mediator;
 
 namespace src.webapi.Controllers;
 
@@ -11,10 +10,10 @@ namespace src.webapi.Controllers;
 [Route("api/[controller]")]
 public class LembretesController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    private readonly IMediatorHandler _mediator;
     private readonly ILembreteQuery _lembreteQuery;
 
-    public LembretesController(IMediator mediator, ILembreteQuery lembreteQuery)
+    public LembretesController(IMediatorHandler mediator, ILembreteQuery lembreteQuery)
     {
         _mediator = mediator;
         _lembreteQuery = lembreteQuery;
@@ -25,7 +24,7 @@ public class LembretesController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        ValidationResult result = await _mediator.Send(command);
+        ValidationResult result = await _mediator.EnviarComando(command);
 
         if (!result.IsValid) return BadRequest(result.Errors);
 
@@ -37,7 +36,7 @@ public class LembretesController : ControllerBase
     {
         var command = new ConcluirLembreteCommand(id);
 
-        ValidationResult result = await _mediator.Send(command);
+        ValidationResult result = await _mediator.EnviarComando(command);
 
         if (!result.IsValid) return BadRequest(result.Errors);
 
@@ -49,7 +48,7 @@ public class LembretesController : ControllerBase
     {
         var command = new DesconcluirLembreteCommand(id);
 
-        ValidationResult result = await _mediator.Send(command);
+        ValidationResult result = await _mediator.EnviarComando(command);
 
         if (!result.IsValid) return BadRequest(result.Errors);
 

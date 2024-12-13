@@ -68,7 +68,7 @@ public class EducadoresController : MainController
     /// </summary>
     /// <param name="cpf"></param>
     /// <returns></returns>
-    [HttpGet("{cpf}")]
+    [HttpGet("cpf/{cpf}")]
     public async Task<IActionResult> ObterPorCpf(string cpf)
     {
         var educador = await _educadorQuery.ObterEducadorPorCpf(cpf);
@@ -87,7 +87,7 @@ public class EducadoresController : MainController
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("{id}")]
+    [HttpGet("id/{id}")]
     public async Task<IActionResult> ObterPorId(Guid id)
     {
         var educador = await _educadorQuery.ObterEducadorPorId(id);
