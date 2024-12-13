@@ -7,8 +7,8 @@ using MediatR;
 namespace educae.comunicacao.app.Application.Commands.Atividades;
 
 public class AtividadeCommandHandler : CommandHandler,
-    IRequestHandler<AdicionarAtividadeCommand, ValidationResult>, 
-    IRequestHandler<EditarAtividadeCommand, ValidationResult>, 
+    IRequestHandler<AdicionarAtividadeCommand, ValidationResult>,
+    IRequestHandler<EditarAtividadeCommand, ValidationResult>,
     IRequestHandler<EnviarAtividadeCommand, ValidationResult>, IDisposable
 {
     private readonly IAtividadeRepository _atividadeRepository;
@@ -21,11 +21,11 @@ public class AtividadeCommandHandler : CommandHandler,
     public async Task<ValidationResult> Handle(AdicionarAtividadeCommand request, CancellationToken cancellationToken)
     {
         if (!request.EstaValido()) return ValidationResult;
-        
+
         var novaAtividade = new Atividade(request.Titulo, request.Descricao, request.DataMaximaEntrega, request.Feito);
-        
+
         _atividadeRepository.Adicionar(novaAtividade);
-        
+
         return await PersistirDados(_atividadeRepository.UnitOfWork);
     }
 
@@ -40,17 +40,17 @@ public class AtividadeCommandHandler : CommandHandler,
             AdicionarErro("Atividade não encontrada");
             return ValidationResult;
         }
-        
+
         atividade.Atualizar(request.Titulo, request.Descricao, request.DataMaximaEntrega);
-        
+
         _atividadeRepository.Atualizar(atividade);
-        
+
         return await PersistirDados(_atividadeRepository.UnitOfWork);
     }
     public async Task<ValidationResult> Handle(EnviarAtividadeCommand request, CancellationToken cancellationToken)
     {
-        if(!request.EstaValido()) return ValidationResult;
-        
+        if (!request.EstaValido()) return ValidationResult;
+
         var atividade = await _atividadeRepository.ObterPorId(request.AtividadeId);
 
         if (atividade == null)
@@ -58,12 +58,12 @@ public class AtividadeCommandHandler : CommandHandler,
             AdicionarErro("Atividade não encontrada");
             return ValidationResult;
         }
-        
+
         atividade.MarcarFeito();
         atividade.AtribuirEstrelas(request.AvaliacaoAtividade);
-        
+
         _atividadeRepository.Atualizar(atividade);
-        
+
         return await PersistirDados(_atividadeRepository.UnitOfWork);
     }
 
@@ -71,5 +71,4 @@ public class AtividadeCommandHandler : CommandHandler,
     {
         _atividadeRepository?.Dispose();
     }
-
 }
